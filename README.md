@@ -1,6 +1,6 @@
 # jupyterlab_codex
 
-![Github Actions Status](https://github.com/lhr0909/jupyterlab-codex/workflows/Build/badge.svg)
+![Github Actions Status](https://github.com/luiscarlosaltbar/jupyterlab-codex/workflows/Build/badge.svg)
 
 JupyterLab extension that unlocks the power of OpenAI's Codex Model.
 

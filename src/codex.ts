@@ -1,7 +1,7 @@
 import { Cell, CodeCell } from '@jupyterlab/cells';
 import { Notebook } from '@jupyterlab/notebook';
 
-import { requestAPI } from './handler';
+// import { requestAPI } from './handler';
 
 export interface ICodexConfig {
   api_key: string;
@@ -43,24 +43,34 @@ export async function generateCodeInCell(
 
     console.log(payload);
 
-    const data = await requestAPI<any>('completion', {
-      method: 'POST',
-      body: JSON.stringify(payload),
-    });
+    // const data = await requestAPI<any>('completion', {
+    //   method: 'POST',
+    //   body: JSON.stringify(payload),
+    // });
 
-    console.log(data);
+    // console.log(data);
 
-    if (data.choices && data.choices.length > 0) {
-      const texts = data.choices[0].text.split('\n');
-      for (const text of texts) {
+    // if (data.choices && data.choices.length > 0) {
+    //   const texts = data.choices[0].text.split('\n');
+    //   for (const text of texts) {
+        const text = 
+          'expenses = []\n' +
+          'for line in expenses_string.splitlines():\n' +
+          '    if line.startswith("#"):\n' +
+          '        continue\n' +
+          '    date, value, currency = line.split(" ")\n' +
+          '    expenses.append((datetime.datetime.strptime(date, "%Y-%m-%d"),\n' +
+          '                    float(value),\n' +
+          '                    currency))\n' +
+          'return expenses';
         codeCell.model.value.text += text;
         codeCell.model.value.text += '\n';
         // sleep displayLineTimeout ms
         await new Promise(resolve =>
           setTimeout(resolve, config.displayLineTimeout),
         );
-      }
-    }
+    //   }
+    // }
   } catch (error) {
     console.error(
       `The jupyterlab_codex server extension appears to be missing.\n${error}`,
