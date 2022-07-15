@@ -54,15 +54,16 @@ export async function generateCodeInCell(
     //   const texts = data.choices[0].text.split('\n');
     //   for (const text of texts) {
         const text = 
-          'expenses = []\n' +
-          'for line in expenses_string.splitlines():\n' +
-          '    if line.startswith("#"):\n' +
-          '        continue\n' +
-          '    date, value, currency = line.split(" ")\n' +
-          '    expenses.append((datetime.datetime.strptime(date, "%Y-%m-%d"),\n' +
-          '                    float(value),\n' +
-          '                    currency))\n' +
-          'return expenses';
+          'def parse_expenses(expenses_string):' +
+          ' expenses = []\n' +
+          ' for line in expenses_string.splitlines():\n' +
+          '     if line.startswith("#"):\n' +
+          '         continue\n' +
+          '     date, value, currency = line.split(" ")\n' +
+          '     expenses.append((datetime.datetime.strptime(date, "%Y-%m-%d"),\n' +
+          '                     float(value),\n' +
+          '                     currency))\n' +
+          ' return expenses';
         codeCell.model.value.text += text;
         codeCell.model.value.text += '\n';
         // sleep displayLineTimeout ms
